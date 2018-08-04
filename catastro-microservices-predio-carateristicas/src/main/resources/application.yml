@@ -1,0 +1,20 @@
+server:
+   port: 9090
+ 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    nonSecurePort: 9090
+    status-page-url-path: /info
+    health-check-url-path: /health  
+ 
+management:
+  security:
+     enabled: false
+     
+spring:
+  application:
+    name: caracteristicas-predio-service     

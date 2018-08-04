@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: catastro-microservices
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Xndy/catastro-microservices
+          username: xndy
+          password: andy123A
