@@ -1,2 +1,10 @@
-info: ConfiguracionesBaseDatos
-variable: valor-desarrollo
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.7:5432/catastro
+    username: postgres
+    password: 1234
+    platform: postgres
+    
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
