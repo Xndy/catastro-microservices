@@ -3,18 +3,17 @@ server:
  
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    service-url:
+      default-zone: http://127.0.0.1:8761/eureka/
   instance:
-    hostname: localhost
-    nonSecurePort: 9090
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+    appname: CATASTRO-PREDIOS-CARACTERISTICAS
     status-page-url-path: /info
     health-check-url-path: /health  
- 
-management:
-  security:
-     enabled: false
-     
-spring:
-  application:
-    name: caracteristicas-predio-service     
+
+
+    

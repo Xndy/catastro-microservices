@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RefreshScope
-@RestController
+//@RestController
 public class DataBaseSource {
 
 	// https://github.com/Xndy/catastro-microservices
 
-	@Value("${spring.datasource.driverClassName}")
+	@Value("${spring.datasource.driver-class-name}")
 	private String driverClassName;
 
 	@Value("${spring.datasource.url}")
@@ -30,27 +30,27 @@ public class DataBaseSource {
 	@Autowired
 	private DataSource dataSource;
 
-	@RequestMapping("/showConfig")
-	@ResponseBody
-	public String showConfig() {
-		String configInfo = "Copy Right: :v" //
-				+ "<br/>spring.datasource.driver-class-name=" + driverClassName //
-				+ "<br/>spring.datasource.url=" + url //
-				+ "<br/>spring.datasource.username=" + userName //
-				+ "<br/>spring.datasource.password=" + password;
-
-		return configInfo;
-	}
-
-	@RequestMapping("/pingDataSource")
-	@ResponseBody
-	public String pingDataSource() {
-		try {
-			return this.dataSource.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "Error: " + e.getMessage();
-		}
-	}
+//	@RequestMapping("/showConfig")
+//	@ResponseBody
+//	public String showConfig() {
+//		String configInfo = "Copy Right: :v" //
+//				+ "<br/>spring.datasource.driver-class-name=" + driverClassName //
+//				+ "<br/>spring.datasource.url=" + url //
+//				+ "<br/>spring.datasource.username=" + userName //
+//				+ "<br/>spring.datasource.password=" + password;
+//
+//		return configInfo;
+//	}
+//
+//	@RequestMapping("/pingDataSource")
+//	@ResponseBody
+//	public String pingDataSource() {
+//		try {
+//			return this.dataSource.toString();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return "Error: " + e.getMessage();
+//		}
+//	}
 
 }
