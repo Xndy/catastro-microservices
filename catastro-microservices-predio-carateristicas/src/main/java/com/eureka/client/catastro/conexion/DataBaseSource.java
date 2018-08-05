@@ -1,16 +1,27 @@
 package com.eureka.client.catastro.conexion;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 
 @RefreshScope
-//@RestController
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(entityManagerFactoryRef = "catastroEntityManager", transactionManagerRef = "catastroTransactionManager", basePackages = {
+		"com.eureka.client.catastro.repository" })
 public class DataBaseSource {
 
 	// https://github.com/Xndy/catastro-microservices
@@ -26,31 +37,22 @@ public class DataBaseSource {
 
 	@Value("${spring.datasource.password}")
 	private String password;
-
+	
+	@Value("${spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation}")
+	private String nonContextualCreation;
+	
 	@Autowired
 	private DataSource dataSource;
 
-//	@RequestMapping("/showConfig")
-//	@ResponseBody
-//	public String showConfig() {
-//		String configInfo = "Copy Right: :v" //
-//				+ "<br/>spring.datasource.driver-class-name=" + driverClassName //
-//				+ "<br/>spring.datasource.url=" + url //
-//				+ "<br/>spring.datasource.username=" + userName //
-//				+ "<br/>spring.datasource.password=" + password;
-//
-//		return configInfo;
-//	}
-//
-//	@RequestMapping("/pingDataSource")
-//	@ResponseBody
-//	public String pingDataSource() {
-//		try {
-//			return this.dataSource.toString();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return "Error: " + e.getMessage();
-//		}
-//	}
+	@Bean(name = "catastroEntityManager")
+	public LocalContainerEntityManagerFactoryBean catastroEntityManager(EntityManagerFactoryBuilder builder) {
+		return builder.dataSource(dataSource).packages("com.eureka.client.catastro.entities")
+				.persistenceUnit("catastro").build();
+	}
+
+	@Bean(name = "catastroTransactionManager")
+	public PlatformTransactionManager transactionManager(@Qualifier("catastroEntityManager") EntityManagerFactory entityManagerFactory) {
+		return new JpaTransactionManager(entityManagerFactory);
+	}
 
 }
