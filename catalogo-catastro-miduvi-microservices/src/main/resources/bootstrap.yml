@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: catastro-microservices
+  cloud:
+    config:
+      uri: http://localhost:8888

@@ -1,2 +1,12 @@
 /catastro-eureka-server/.settings
 /catastro-eureka-server/target
+/catalogo-catastro-miduvi-microservices/.mvn/wrapper/maven-wrapper.properties
+/catalogo-catastro-miduvi-microservices/.mvn/wrapper/maven-wrapper.jar
+/catalogo-catastro-miduvi-microservices/mvnw
+/catastro-spring-cloud-server/mvnw.cmd
+/catastro-spring-cloud-server/mvnw
+/catastro-spring-cloud-server/.mvn/wrapper/maven-wrapper.properties
+/catastro-spring-cloud-server/.mvn/wrapper/maven-wrapper.jar
+/catastro-microservices-predio-carateristicas/mvnw.cmd
+/catastro-microservices-predio-carateristicas/.mvn/wrapper/maven-wrapper.jar
+/catalogo-catastro-miduvi-microservices/mvnw.cmd

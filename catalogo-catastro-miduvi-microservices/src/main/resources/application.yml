@@ -1,0 +1,19 @@
+server:
+   port: 8091
+ 
+eureka:
+  client:
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    service-url:
+      default-zone: http://127.0.0.1:8761/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+    appname: CATASTRO-CATALOGOS-MIDUVI
+    status-page-url-path: /info
+    health-check-url-path: /health  
+
+
+    
