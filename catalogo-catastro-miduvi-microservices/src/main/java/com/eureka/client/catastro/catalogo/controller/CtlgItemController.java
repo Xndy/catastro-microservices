@@ -17,6 +17,7 @@ public class CtlgItemController {
 	@Autowired
 	private CtlgItemRepository ctlgItemRepository;
 
+	//Example
 	@RequestMapping(value = "/items/{nombre}", method = RequestMethod.GET)
 	public ResponseEntity<?> getSucursalByClient(@PathVariable String nombre) {
 		return new ResponseEntity<>(ctlgItemRepository.getItemsByCatalogo(nombre), HttpStatus.OK);
